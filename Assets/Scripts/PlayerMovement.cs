@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -14,15 +12,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-      _cc = GetComponent<CharacterController>();
-      _pInput = GetComponent<PlayerInput>();
+        _cc = GetComponent<CharacterController>();
+        _pInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _movement = new Vector3(_inputValue.x, 0, _inputValue.y);
-        _movement = _movement * _speed * Time.deltaTime;
+        Vector3 move = transform.right * _inputValue.x + transform.forward * _inputValue.y;
+        _movement = move * _speed * Time.deltaTime;
 
         _cc.Move(_movement);
     }
