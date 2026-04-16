@@ -45,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _lookInputValue = input.Get<Vector2>();
 
-        Debug.Log($"El mouse se movió {_lookInputValue}");
+      //Debug.Log($"El mouse se movió {_lookInputValue}");
     }
 
     private void CameraMovement()
