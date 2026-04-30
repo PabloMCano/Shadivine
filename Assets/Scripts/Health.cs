@@ -1,16 +1,27 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private int _health;
+
+    private void Update()
     {
-        
+        ZeroHealth();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ReceiveDamage(int Damage)
     {
-        
+        _health -= Damage;
+
+        Debug.Log($"El personaje recibió {Damage} de daño, ahora tiene {_health} de vida");
+    }
+
+    private void ZeroHealth()
+    {
+        if (_health <= 0)
+        {
+            SceneManager.LoadScene("Test_Map");
+        }
     }
 }
