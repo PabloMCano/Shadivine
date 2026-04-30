@@ -3,23 +3,29 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int _health;
+    [SerializeField] private int _maxHealth;
+    private int _currentHealth;
 
-    private void Update()
+    private void Awake()
     {
-        ZeroHealth();
+        _currentHealth = _maxHealth;
     }
 
-    public void ReceiveDamage(int Damage)
+    public void TakeDamage(int Damage)
     {
-        _health -= Damage;
+        _currentHealth -= Damage;
 
-        Debug.Log($"El personaje recibió {Damage} de daño, ahora tiene {_health} de vida");
+        Debug.Log($"El personaje recibió {Damage} de daño, ahora tiene {_currentHealth} de vida");
+
+        if ( _currentHealth <= 0 )
+        {
+            Die();
+        }
     }
 
-    private void ZeroHealth()
+    private void Die()
     {
-        if (_health <= 0)
+        if (_currentHealth <= 0)
         {
             SceneManager.LoadScene("Test_Map");
         }

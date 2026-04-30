@@ -4,13 +4,14 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] private int _damage;
-    void OnCollisionEnter(Collision collision)
-    {
-        Health HealthComponent = collision.gameObject.GetComponent<Health>();
 
-        if (HealthComponent != null & collision.gameObject.CompareTag("Player"))
+    private void OnTriggerEnter(Collider other)
+    {
+        Health HealthComponent = other.GetComponent<Health>();
+
+        if (HealthComponent != null & other.CompareTag("Player"))
         {
-            HealthComponent.ReceiveDamage(_damage);
+            HealthComponent.TakeDamage(_damage);
         }
     }
 }
