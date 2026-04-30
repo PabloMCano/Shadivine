@@ -1,16 +1,19 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyChase : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
+    [SerializeField] private Transform _objectToChase;
+    private NavMeshAgent _agent;
+
+    private void Awake()
+    {   
+        _agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        _agent.SetDestination(_objectToChase.position);
     }
+
 }
