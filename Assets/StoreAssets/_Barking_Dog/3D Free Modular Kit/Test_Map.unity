@@ -1329,7 +1329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &343378454
 Transform:
   m_ObjectHideFlags: 0
@@ -2238,7 +2238,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _cameraTransform: {fileID: 330585546}
-  _moveSpeed: 4
+  _walkingSpeed: 4
+  _runSpeed: 6
   _cameraSpeed: 6
 --- !u!136 &618796240
 CapsuleCollider:
@@ -2979,12 +2980,12 @@ NavMeshAgent:
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.5
+  m_StoppingDistance: 1.75
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0
+  m_BaseOffset: 0.75
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!136 &837658422
@@ -3880,7 +3881,7 @@ Transform:
   m_GameObject: {fileID: 1185992691}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
