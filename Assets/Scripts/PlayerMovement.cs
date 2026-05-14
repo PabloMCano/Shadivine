@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
         float mouseY = _lookInputValue.y * _cameraSpeed * Time.deltaTime;
 
         _xRotation -= mouseY;
-        _xRotation = Mathf.Clamp(_xRotation, -80f, 80f);
+        _xRotation = Mathf.Clamp(_xRotation, -20f, 45f);
 
         _cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
 
