@@ -9,18 +9,37 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject _hitboxAttack;
     [SerializeField] private float _timeToFinishCombo;
     [SerializeField] private float _timeToDoAttack;
+    [SerializeField] private int _M1Damage;
+    [SerializeField] private int _M2Damage;
+    private HitboxPlayerAttack _hitboxDamage;
     private float _timerToAttack;
     private float _timerToContinueCombo;
     private float _comboNumberAttack = 0;
     private bool _isComboActive;
 
-    private void OnAttackM1(InputValue input)
+    private void Awake()
     {
-        Debug.Log("Se presiono M1");
+        _hitboxDamage = _hitboxAttack.GetComponent<HitboxPlayerAttack>();
+    }
 
-        if (input.isPressed && _timerToAttack >= _timeToDoAttack)
+    private void OnAttackM1(InputValue input)
+    {     
+        _hitboxDamage.ChangesDamage(_M1Damage);
+
+        if (_timerToAttack >= _timeToDoAttack)
         {
-            AttackCombo();
+            AttackCombo(0.5f);
+        }
+    }
+
+    private void OnAttackM2(InputValue input)
+    {
+
+        _hitboxDamage.ChangesDamage(_M2Damage);
+
+        if (_timerToAttack >= _timeToDoAttack)
+        {
+            AttackCombo(1f);
         }
     }
 
@@ -40,7 +59,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void AttackCombo()
+    private void AttackCombo(float secondsForOtherAttack)
     {
         switch (_comboNumberAttack)
         {
@@ -50,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
 
                 _isComboActive = true;
 
-                _timerToAttack = _timeToDoAttack - 0.5f;
+                _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
                 StartCoroutine(AttackHitboxPlayerCouroutine());
 
@@ -60,7 +79,7 @@ public class PlayerAttack : MonoBehaviour
                 _comboNumberAttack++;
                 _timerToContinueCombo = 0;
 
-                _timerToAttack = _timeToDoAttack - 0.5f;
+                _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
                 StartCoroutine(AttackHitboxPlayerCouroutine());
 
@@ -70,7 +89,7 @@ public class PlayerAttack : MonoBehaviour
                 _comboNumberAttack++;
                 _timerToContinueCombo = 0;
 
-                _timerToAttack = _timeToDoAttack - 0.5f;
+                _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
                 StartCoroutine(AttackHitboxPlayerCouroutine());
 
@@ -80,7 +99,7 @@ public class PlayerAttack : MonoBehaviour
                 _comboNumberAttack++;
                 _timerToContinueCombo = 0;
 
-                _timerToAttack = _timeToDoAttack - 0.5f;
+                _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
                 StartCoroutine(AttackHitboxPlayerCouroutine());
 

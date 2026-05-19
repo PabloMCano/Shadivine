@@ -2357,13 +2357,13 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 2
+  m_Height: 3.3
   m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!114 &618796238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2430,9 +2430,9 @@ CapsuleCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.4939108
+  m_Height: 3.4020095
   m_Direction: 1
-  m_Center: {x: 0, y: 0.7469554, z: 0}
+  m_Center: {x: 0, y: 0.29290605, z: 0}
 --- !u!114 &618796241
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2478,6 +2478,8 @@ MonoBehaviour:
   _hitboxAttack: {fileID: 633524310}
   _timeToFinishCombo: 2
   _timeToDoAttack: 2
+  _M1Damage: 10
+  _M2Damage: 20
 --- !u!1 &633524310
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,7 +2492,7 @@ GameObject:
   - component: {fileID: 633524315}
   - component: {fileID: 633524314}
   - component: {fileID: 633524313}
-  - component: {fileID: 633524312}
+  - component: {fileID: 633524316}
   m_Layer: 0
   m_Name: HitboxPlayer Attack
   m_TagString: Untagged
@@ -2513,19 +2515,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 618796236}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &633524312
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 633524310}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2502ea504d58c9429e3f4080179a3b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  _damage: 5
 --- !u!65 &633524313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2604,6 +2593,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633524310}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &633524316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633524310}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94773e77ffa6c8f4e833da168eaec0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!4 &662887266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 416390, guid: c76d2d3504ddb4847940a815cad04644, type: 3}
@@ -3238,9 +3239,10 @@ GameObject:
   - component: {fileID: 837658418}
   - component: {fileID: 837658421}
   - component: {fileID: 837658422}
+  - component: {fileID: 837658423}
   m_Layer: 0
   m_Name: Enemy 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3321,6 +3323,19 @@ CapsuleCollider:
   m_Height: 3.0376804
   m_Direction: 1
   m_Center: {x: -0, y: 0.53244865, z: 0}
+--- !u!114 &837658423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837658417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60263c2e7d4496a43a64387013ddf493, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _maxEnemyHealth: 100
 --- !u!1001 &837995655
 PrefabInstance:
   m_ObjectHideFlags: 0
