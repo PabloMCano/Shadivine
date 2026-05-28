@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -22,15 +23,21 @@ public class PlayerMovement : MonoBehaviour
     float _xRotation = 0f;
     bool _activateSprint;
 
+    private Health _playerHealth;
+    private bool _dodging;
+
     private void Awake()
     {
         _cc = GetComponent<CharacterController>();
+        _playerHealth = GetComponent<Health>();
     }
 
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        _actualStaminaDodge = _maxStaminaDodge;
     }
 
     // Update is called once per frame
@@ -40,23 +47,31 @@ public class PlayerMovement : MonoBehaviour
 
         _timeToRetryDodge += Time.deltaTime;
 
+        if (_actualStaminaDodge < _maxStaminaDodge)
+        {
+            _actualStaminaDodge += Time.deltaTime * 5;
+        }
+
         if (_activateSprint & _moveInputValue.y > 0.1)
         {
             _actualSpeed = _runSpeed;
         }
 
-        Vector3 move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
-        _movement = move * _actualSpeed * Time.deltaTime;
-
-        _cc.Move(_movement);
-
-
         CameraMovement();
 
         if (_activateDodge)
         {
+            if (!_dodging)
+            { 
+                StartCoroutine(DodgeFunction());
+            }
+        }
+        else 
+        {
+            Vector3 move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
+            _movement = move * _actualSpeed * Time.deltaTime;
 
-            DodgeFunction();
+            _cc.Move(_movement);
         }
     }
 
@@ -91,6 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnDodge(InputValue input)
     {
+        Debug.Log("Se trató de dodgear");
         if (_timeToRetryDodge > 1.5f && _actualStaminaDodge > _minStamToDoDodge)
         {
             _activateDodge = true;
@@ -99,9 +115,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void DodgeFunction()
+    private IEnumerator DodgeFunction()
     {
-       
+        _dodging = true;
+        //Volvemos invencible al jugador
+        _playerHealth.SetInvincible(true);
+        
+        //Lo movemos en la direccion de movimiento
+        //Desactivamos la invencibilidad del jugador
+
+
+        yield return new WaitForSeconds(1);
+
+        //Tenemos que tener guardada la última dirección de movimiento apretada por el jugador (o la actual, si es que está tocando un input ahora).
+        //Mover el personaje en el sentido de la ultima dirección de movimiento 
+
+        Debug.Log("DODGE");
+
+        _playerHealth.SetInvincible(false);
+        _activateDodge = false;
+        _dodging = false;
     }
 
     private void CameraMovement()
