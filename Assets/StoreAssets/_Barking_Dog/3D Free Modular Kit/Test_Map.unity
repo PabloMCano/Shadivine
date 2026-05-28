@@ -2410,6 +2410,8 @@ MonoBehaviour:
   _walkingSpeed: 4
   _runSpeed: 6
   _cameraSpeed: 6
+  _maxStaminaDodge: 100
+  _minStamToDoDodge: 20
 --- !u!136 &618796240
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3240,6 +3242,7 @@ GameObject:
   - component: {fileID: 837658421}
   - component: {fileID: 837658422}
   - component: {fileID: 837658423}
+  - component: {fileID: 837658424}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -3336,6 +3339,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maxEnemyHealth: 100
+--- !u!143 &837658424
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837658417}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &837995655
 PrefabInstance:
   m_ObjectHideFlags: 0
