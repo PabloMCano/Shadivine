@@ -5,15 +5,20 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [SerializeField] private Transform _cameraTransform;
+    [SerializeField] private float _walkingSpeed;
+    [SerializeField] private float _runSpeed;
+    [SerializeField] private float _cameraSpeed;
+    [SerializeField] private float _maxStaminaDodge;
+    [SerializeField] private float _minStamToDoDodge;
     private CharacterController _cc;
     private Vector2 _moveInputValue;
     private Vector2 _lookInputValue;
     private Vector3 _movement;
     private float _actualSpeed;
-    [SerializeField] private Transform _cameraTransform;
-    [SerializeField] private float _walkingSpeed;
-    [SerializeField] private float _runSpeed;
-    [SerializeField] private float _cameraSpeed;
+    private float _actualStaminaDodge;
+    private float _timeToRetryDodge;
+    private bool _activateDodge;
     float _xRotation = 0f;
     bool _activateSprint;
 
@@ -33,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _actualSpeed = _walkingSpeed;
 
+        _timeToRetryDodge += Time.deltaTime;
+
         if (_activateSprint & _moveInputValue.y > 0.1)
         {
             _actualSpeed = _runSpeed;
@@ -45,6 +52,12 @@ public class PlayerMovement : MonoBehaviour
 
 
         CameraMovement();
+
+        if (_activateDodge)
+        {
+
+            DodgeFunction();
+        }
     }
 
     private void OnMove(InputValue input)
@@ -74,6 +87,21 @@ public class PlayerMovement : MonoBehaviour
             }
 
        }
+    }
+
+    private void OnDodge(InputValue input)
+    {
+        if (_timeToRetryDodge > 1.5f && _actualStaminaDodge > _minStamToDoDodge)
+        {
+            _activateDodge = true;
+            _timeToRetryDodge = 0f;
+            _actualStaminaDodge -= _minStamToDoDodge;
+        }
+    }
+
+    private void DodgeFunction()
+    {
+       
     }
 
     private void CameraMovement()
