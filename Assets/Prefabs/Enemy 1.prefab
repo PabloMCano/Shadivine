@@ -450,6 +450,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maxEnemyHealth: 100
+  StopAttackEnemy: 0
 --- !u!143 &3351826260937415058
 CharacterController:
   m_ObjectHideFlags: 0

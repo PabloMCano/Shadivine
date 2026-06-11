@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,6 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int _maxEnemyHealth;
     private int _currentEnemyHealth;
+    public bool StopAttackEnemy;
 
     private void Awake()
     {
@@ -15,6 +17,8 @@ public class EnemyHealth : MonoBehaviour
     public void EnemyTakeDamage(int Damage)
     {
         _currentEnemyHealth -= Damage;
+
+        StartCoroutine(ToStopEnemy());
 
         Debug.Log($"El enemigo recibió {Damage} de daño, ahora tiene {_currentEnemyHealth} de vida");
 
@@ -33,4 +37,14 @@ public class EnemyHealth : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    
+    private IEnumerator ToStopEnemy()
+    {
+        StopAttackEnemy = true;
+        yield return new WaitForSeconds(1);
+        StopAttackEnemy = false;
+    }
+
+    
 }
