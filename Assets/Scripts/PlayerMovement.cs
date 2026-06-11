@@ -46,69 +46,73 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _actualSpeed = _walkingSpeed;
-
-     //   _timeToRetryDodge += Time.deltaTime;
-
-    //    if (_actualStaminaDodge < _maxStaminaDodge)
-    //    {
-    //        _actualStaminaDodge += Time.deltaTime * 5;
-    //    }
-
-        if (_activateSprint & _moveInputValue.y > 0.1)
+        if (!_playerHealth.StopPlayer)
         {
-            _actualSpeed = _runSpeed;
-        }
 
-        CameraMovement();
+            _actualSpeed = _walkingSpeed;
 
-        move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
+            //   _timeToRetryDodge += Time.deltaTime;
 
-        SetGravity();
+            //    if (_actualStaminaDodge < _maxStaminaDodge)
+            //    {
+            //        _actualStaminaDodge += Time.deltaTime * 5;
+            //    }
 
-        _movement = move * _actualSpeed * Time.deltaTime;
-
-        _cc.Move(_movement);
-
-        /*
-            if (_activateDodge)
+            if (_activateSprint & _moveInputValue.y > 0.1)
             {
-                if (!_dodging)
-                { 
-                    StartCoroutine(DodgeFunction());
+                _actualSpeed = _runSpeed;
+            }
 
-                    _dodgeMoveForSeconds = 0f;
-                }
+            CameraMovement();
 
-                else
+            move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
+
+            SetGravity();
+
+            _movement = move * _actualSpeed * Time.deltaTime;
+
+            _cc.Move(_movement);
+
+            /*
+                if (_activateDodge)
                 {
-                    _dodgeMoveForSeconds += Time.deltaTime * 8f;
+                    if (!_dodging)
+                    { 
+                        StartCoroutine(DodgeFunction());
 
-                    switch (_moveInputValue.x)
-                    {
-                        case > 0:
-
-                            Vector3 moveDodge = transform.right * _dodgeMoveForSeconds;
-                            _movement = moveDodge * Time.deltaTime;
-
-                            _cc.Move(_movement);
-
-                            return;
+                        _dodgeMoveForSeconds = 0f;
                     }
+
+                    else
+                    {
+                        _dodgeMoveForSeconds += Time.deltaTime * 8f;
+
+                        switch (_moveInputValue.x)
+                        {
+                            case > 0:
+
+                                Vector3 moveDodge = transform.right * _dodgeMoveForSeconds;
+                                _movement = moveDodge * Time.deltaTime;
+
+                                _cc.Move(_movement);
+
+                                return;
+                        }
+                    }
+
                 }
+                else 
+                {
+                    move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
 
-            }
-            else 
-            {
-                move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
+                    SetGravity();
 
-                SetGravity();
+                    _movement = move * _actualSpeed * Time.deltaTime;
 
-                _movement = move * _actualSpeed * Time.deltaTime;
-
-                _cc.Move(_movement);
-            }
-     */
+                    _cc.Move(_movement);
+                }
+         */
+        }
     }
  
     private void OnMove(InputValue input)
