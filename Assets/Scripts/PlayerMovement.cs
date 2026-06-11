@@ -12,16 +12,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _cameraSpeed;
     [SerializeField] private float _maxStaminaDodge;
     [SerializeField] private float _minStamToDoDodge;
+    [SerializeField] private float _gravity;
     private CharacterController _cc;
     private Vector2 _moveInputValue;
     private Vector2 _lookInputValue;
+    private Vector3 move;
     private Vector3 _movement;
     private float _actualSpeed;
     private float _actualStaminaDodge;
     private float _timeToRetryDodge;
     private bool _activateDodge;
-    float _xRotation = 0f;
-    bool _activateSprint;
+    private float _xRotation = 0f;
+    private bool _activateSprint;
+    private float _dodgeMoveForSeconds;
 
     private Health _playerHealth;
     private bool _dodging;
@@ -45,12 +48,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _actualSpeed = _walkingSpeed;
 
-        _timeToRetryDodge += Time.deltaTime;
+     //   _timeToRetryDodge += Time.deltaTime;
 
-        if (_actualStaminaDodge < _maxStaminaDodge)
-        {
-            _actualStaminaDodge += Time.deltaTime * 5;
-        }
+    //    if (_actualStaminaDodge < _maxStaminaDodge)
+    //    {
+    //        _actualStaminaDodge += Time.deltaTime * 5;
+    //    }
 
         if (_activateSprint & _moveInputValue.y > 0.1)
         {
@@ -59,22 +62,55 @@ public class PlayerMovement : MonoBehaviour
 
         CameraMovement();
 
-        if (_activateDodge)
-        {
-            if (!_dodging)
-            { 
-                StartCoroutine(DodgeFunction());
+        move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
+
+        SetGravity();
+
+        _movement = move * _actualSpeed * Time.deltaTime;
+
+        _cc.Move(_movement);
+
+        /*
+            if (_activateDodge)
+            {
+                if (!_dodging)
+                { 
+                    StartCoroutine(DodgeFunction());
+
+                    _dodgeMoveForSeconds = 0f;
+                }
+
+                else
+                {
+                    _dodgeMoveForSeconds += Time.deltaTime * 8f;
+
+                    switch (_moveInputValue.x)
+                    {
+                        case > 0:
+
+                            Vector3 moveDodge = transform.right * _dodgeMoveForSeconds;
+                            _movement = moveDodge * Time.deltaTime;
+
+                            _cc.Move(_movement);
+
+                            return;
+                    }
+                }
+
             }
-        }
-        else 
-        {
-            Vector3 move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
-            _movement = move * _actualSpeed * Time.deltaTime;
+            else 
+            {
+                move = transform.right * _moveInputValue.x + transform.forward * _moveInputValue.y;
 
-            _cc.Move(_movement);
-        }
+                SetGravity();
+
+                _movement = move * _actualSpeed * Time.deltaTime;
+
+                _cc.Move(_movement);
+            }
+     */
     }
-
+ 
     private void OnMove(InputValue input)
     {
         _moveInputValue = input.Get<Vector2>();
@@ -104,6 +140,7 @@ public class PlayerMovement : MonoBehaviour
        }
     }
 
+    /*
     private void OnDodge(InputValue input)
     {
         Debug.Log("Se trató de dodgear");
@@ -114,6 +151,7 @@ public class PlayerMovement : MonoBehaviour
             _actualStaminaDodge -= _minStamToDoDodge;
         }
     }
+    
 
     private IEnumerator DodgeFunction()
     {
@@ -137,6 +175,8 @@ public class PlayerMovement : MonoBehaviour
         _dodging = false;
     }
 
+    */
+
     private void CameraMovement()
     {
         float mouseX = _lookInputValue.x * _cameraSpeed * Time.deltaTime;
@@ -148,5 +188,10 @@ public class PlayerMovement : MonoBehaviour
         _cameraTransform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
 
         transform.Rotate(Vector3.up * mouseX); //Rota el personaje segun la rotacion de la camara 
+    }
+
+    private void SetGravity()
+    {
+        move.y = -_gravity * Time.deltaTime;
     }
 }

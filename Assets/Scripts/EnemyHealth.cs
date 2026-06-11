@@ -29,6 +29,8 @@ public class EnemyHealth : MonoBehaviour
         if (_currentEnemyHealth <= 0)
         {
             Debug.Log("El enemigo debe morir");
+
+            Destroy(gameObject);
         }
     }
 }
