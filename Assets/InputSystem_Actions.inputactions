@@ -104,6 +104,24 @@
                     "processors": "",
                     "interactions": "Tap(duration=0.5)",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LongInteract",
+                    "type": "Button",
+                    "id": "c5b96303-7cf3-4793-bbba-bd81debb7429",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Hold(duration=2)",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "InstaKill",
+                    "type": "Button",
+                    "id": "79457170-47d1-4f72-b4d1-942a24261a27",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -544,6 +562,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "Dodge",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0ab0fd2e-c398-4050-98b3-8fbe7e37386f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "27c19379-7fcb-46a3-9db7-c12f39053bb2",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "LongInteract",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "eab35b9f-aba6-408f-83b2-7ef2f41ec255",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "InstaKill",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fa43388a-84cf-4d4b-b8c1-9f56f3001b3b",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "InstaKill",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

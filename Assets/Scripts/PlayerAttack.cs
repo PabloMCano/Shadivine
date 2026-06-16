@@ -17,6 +17,8 @@ public class PlayerAttack : MonoBehaviour
     private float _comboNumberAttack = 0;
     private bool _isComboActive;
 
+    private KillBehindInteract _killbehind;
+
     private void Awake()
     {
         _hitboxDamage = _hitboxAttack.GetComponent<HitboxPlayerAttack>();
@@ -128,4 +130,25 @@ public class PlayerAttack : MonoBehaviour
         _hitboxAttack.SetActive(false);
     }
 
+    private void OnInstaKill(InputValue value)
+    {
+        if (_killbehind != null)
+        {
+            if (_killbehind.PlayerCanKill)
+            {
+                _killbehind.EnemyDies = true;
+
+                Debug.Log("Se Toco y puede matar");
+            }
+        }
+            Debug.Log("Se toco");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<KillBehindInteract>())
+        {
+           _killbehind = other.GetComponent<KillBehindInteract>();
+        }
+    }
 }
