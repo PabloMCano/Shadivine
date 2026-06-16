@@ -6,6 +6,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask interactableLayer;
+    private PassToNextLevel _csToNextLevel;
 
     private bool _buttonInteractPressed;
 
@@ -51,5 +52,27 @@ public class PlayerInteract : MonoBehaviour
     {
        _buttonInteractPressed = true;
 
+    }
+
+    private void OnLongInteract(InputValue value)
+    {
+        if (_csToNextLevel != null)
+        {
+            if (_csToNextLevel.PlayerCanInteract)
+            {
+                _csToNextLevel.ActivatedInteract = true;
+
+                Debug.Log("Se mantuvo apretado y debe de interactuar");
+            }
+        }
+        Debug.Log("Se mantuvo apretado");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.GetComponent<PassToNextLevel>())
+        {
+            _csToNextLevel = other.GetComponent<PassToNextLevel>();
+        }
     }
 }
