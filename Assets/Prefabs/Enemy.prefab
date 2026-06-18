@@ -536,12 +536,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -3287904155548602526, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 204aa3d99af8cbe4ba034b808b06d232, type: 2}
     - target: {fileID: 919132149155446097, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
       propertyPath: m_Name
       value: Male Doctor
       objectReference: {fileID: 0}
+    - target: {fileID: 6585224718134259861, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 6e3fc3e65ba7a824ca641c739502a3e6, type: 2}
+    - target: {fileID: 8212081485869349811, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 204aa3d99af8cbe4ba034b808b06d232, type: 2}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: -3390751023690822627, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82d47018e252e944eaf6bdfbc8dc93bb, type: 3}
