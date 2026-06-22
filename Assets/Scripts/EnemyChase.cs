@@ -4,7 +4,7 @@ using UnityEngine.AI;
 
 public class EnemyChase : MonoBehaviour
 {
-    [SerializeField] private Transform _objectToChase;
+    public Transform ObjectToChase;
     [SerializeField] private GameObject _attackObject;
     private EnemyHealth _enHealth;
     private NavMeshAgent _agent;
@@ -20,7 +20,10 @@ public class EnemyChase : MonoBehaviour
 
     private void Update()
     {
-        _agent.SetDestination(_objectToChase.position);
+        if (ObjectToChase != null)
+        {
+            _agent.SetDestination(ObjectToChase.position);
+        }
 
         if (_enHealth.StopAttackEnemy)
         {
@@ -36,9 +39,17 @@ public class EnemyChase : MonoBehaviour
 
             if (!_agent.pathPending && _agent.remainingDistance <= _agent.stoppingDistance && _agent.speed != 0)
             {
-                _returnToNormalSpeed = false;
+                if (ObjectToChase != null)
+                {
+                    _returnToNormalSpeed = false;
 
-                Attack();
+                    Attack();
+                }
+
+                else
+                {
+                    return;
+                }
             }
         }
     }
