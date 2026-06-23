@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2502ea504d58c9429e3f4080179a3b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttack
-  _damage: 5
+  _damage: 10
 --- !u!1 &7230211203284701499
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3805f203ac74ff442810c9985a958f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _objectToChase: {fileID: 0}
+  ObjectToChase: {fileID: 0}
   _attackObject: {fileID: 5127410898711555318}
 --- !u!195 &8146664847999777428
 NavMeshAgent:

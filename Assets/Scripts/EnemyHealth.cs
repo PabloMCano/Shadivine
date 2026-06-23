@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     private IEnumerator ToStopEnemy()
     {
         StopAttackEnemy = true;
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         StopAttackEnemy = false;
     }
 

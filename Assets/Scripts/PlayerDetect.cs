@@ -59,6 +59,7 @@ public class PlayerDetect : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             GameObject Player = other.gameObject;
+            _collisionPlayer = true;
 
             if (_enemyChase1.ObjectToChase == null && _enemyChase1 != null)
             {
@@ -84,8 +85,6 @@ public class PlayerDetect : MonoBehaviour
             {
                 _enemyChase5.ObjectToChase = Player.transform;
             }
-
-            _collisionPlayer = true;
         }
 
         else

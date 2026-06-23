@@ -9,7 +9,7 @@ public class EnemyChase : MonoBehaviour
     private EnemyHealth _enHealth;
     private NavMeshAgent _agent;
     private float _agentSpeed;
-    private bool _returnToNormalSpeed;
+    private bool _returnToNormalSpeed = true;
 
     private void Awake()
     {   
@@ -66,14 +66,14 @@ public class EnemyChase : MonoBehaviour
 
         _agent.speed = 0;
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         if (!_enHealth.StopAttackEnemy)
         {
             _attackObject.SetActive(true);
         }
 
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
 
         _attackObject.SetActive(false);
         _returnToNormalSpeed = true;
