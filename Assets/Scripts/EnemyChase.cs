@@ -6,6 +6,7 @@ public class EnemyChase : MonoBehaviour
 {
     public Transform ObjectToChase;
     [SerializeField] private GameObject _attackObject;
+    [SerializeField] private Animator _animatorEnemy;
     private EnemyHealth _enHealth;
     private NavMeshAgent _agent;
     private float _agentSpeed;
@@ -66,6 +67,8 @@ public class EnemyChase : MonoBehaviour
 
         _agent.speed = 0;
 
+        _animatorEnemy.SetBool("OnAttack", true);
+
         yield return new WaitForSeconds(0.5f);
 
         if (!_enHealth.StopAttackEnemy)
@@ -73,9 +76,15 @@ public class EnemyChase : MonoBehaviour
             _attackObject.SetActive(true);
         }
 
+        else
+        {
+            _animatorEnemy.SetBool("OnAttack", false);
+        }
+
         yield return new WaitForSeconds(0.5f);
 
         _attackObject.SetActive(false);
+        _animatorEnemy.SetBool("OnAttack", false);
         _returnToNormalSpeed = true;
 
         Debug.Log("Se termino la Corutina");

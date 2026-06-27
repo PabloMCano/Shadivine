@@ -909,6 +909,11 @@ Light:
   m_LightUnit: 1
   m_LuxAtDistance: 1
   m_EnableSpotReflector: 1
+--- !u!95 &14069157 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9034558171960447217, guid: 8401b368719069043bb109edcb8dc951, type: 3}
+  m_PrefabInstance: {fileID: 123622767}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &18406166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6417,6 +6422,10 @@ PrefabInstance:
       propertyPath: _damage
       value: 35
       objectReference: {fileID: 0}
+    - target: {fileID: 5312360318708434901, guid: 8401b368719069043bb109edcb8dc951, type: 3}
+      propertyPath: _animatorEnemy
+      value: 
+      objectReference: {fileID: 14069157}
     - target: {fileID: 6200312158092624092, guid: 8401b368719069043bb109edcb8dc951, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
