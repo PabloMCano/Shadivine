@@ -279,6 +279,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   _maxHealth: 100
+  _animatorP: {fileID: 3541149705504241177}
   StopPlayer: 0
 --- !u!114 &8790218221208926019
 MonoBehaviour:

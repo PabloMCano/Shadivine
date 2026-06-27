@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
+    [SerializeField] private Animator _animatorP;
     private PlayerAttack _pAttackScript;
     private PlayerInteract _pInteractScript;
     private int _currentHealth;
@@ -64,11 +65,15 @@ public class Health : MonoBehaviour
 
         _pInteractScript.enabled = false;
 
+        _animatorP.enabled = false;
+
         yield return new WaitForSeconds(1);
 
         _pAttackScript.enabled = true;
 
         _pInteractScript.enabled = true;
+
+        _animatorP.enabled = true;
 
         StopPlayer = false;
     }
