@@ -546,6 +546,7 @@ MonoBehaviour:
   _toDestroy: {fileID: 3136300798129001279}
   PlayerCanKill: 0
   EnemyDies: 0
+  _enemyHealth: {fileID: 2247757101203278786}
 --- !u!1001 &1018658905612829235
 PrefabInstance:
   m_ObjectHideFlags: 0

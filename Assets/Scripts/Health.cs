@@ -38,7 +38,15 @@ public class Health : MonoBehaviour
     {
         if (_currentHealth <= 0)
         {
-            SceneManager.LoadScene("Test_Map");
+            if (SceneManager.GetActiveScene().name == "2 Tutorial Corridor")
+            {
+                SceneManager.LoadScene("Reset Corridor");
+            }
+
+            else
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
     }
 
