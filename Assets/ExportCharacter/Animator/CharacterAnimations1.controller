@@ -11,9 +11,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: OnAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: OnRun
-    m_EventTreshold: 0
   - m_ConditionMode: 3
     m_ConditionEvent: XMove
     m_EventTreshold: 0.1
@@ -604,9 +601,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: OnAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: OnRun
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: XMove
     m_EventTreshold: -0.1
@@ -781,9 +775,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: OnAttack
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: OnRun
-    m_EventTreshold: 0
   - m_ConditionMode: 4
     m_ConditionEvent: YMove
     m_EventTreshold: -0.1
@@ -809,7 +800,7 @@ AnimatorState:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: rig|Running_002
-  m_Speed: 1
+  m_Speed: 1.5
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -7538639568036363299}
