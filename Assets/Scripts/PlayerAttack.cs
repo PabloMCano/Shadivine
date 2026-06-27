@@ -11,6 +11,9 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private float _timeToDoAttack;
     [SerializeField] private int _M1Damage;
     [SerializeField] private int _M2Damage;
+    [SerializeField] private GameObject _katana;
+    [SerializeField] private Animator _characterAnimations;
+    [SerializeField] private GameObject _particlesForAttack;
     private HitboxPlayerAttack _hitboxDamage;
     private float _timerToAttack;
     private float _timerToContinueCombo;
@@ -125,9 +128,17 @@ public class PlayerAttack : MonoBehaviour
     {
         _hitboxAttack.SetActive(true);
 
+        _katana.gameObject.SetActive(true);
+        _characterAnimations.SetBool("OnAttack", true);
+        _particlesForAttack.gameObject.SetActive(true);
+
         yield return new WaitForSeconds(0.4f);
 
         _hitboxAttack.SetActive(false);
+
+        _katana.gameObject.SetActive(false);
+        _characterAnimations.SetBool("OnAttack", false);
+        _particlesForAttack.gameObject.SetActive(false);
     }
 
     private void OnInstaKill(InputValue value)
