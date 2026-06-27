@@ -1,13 +1,13 @@
+using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] private int _maxEnemyHealth;
     private int _currentEnemyHealth;
     public bool StopAttackEnemy;
+    public static event Action OnEnemyDeath;
 
     private void Awake()
     {
@@ -24,17 +24,19 @@ public class EnemyHealth : MonoBehaviour
 
         if (_currentEnemyHealth <= 0)
         {
-            Die();
+            Die(gameObject);
         }
     }
 
-    private void Die()
+    public void Die(GameObject _gameObject)
     {
         if (_currentEnemyHealth <= 0)
         {
             Debug.Log("El enemigo debe morir");
 
-            Destroy(gameObject);
+            OnEnemyDeath?.Invoke();
+
+            Destroy(_gameObject);
         }
     }
 

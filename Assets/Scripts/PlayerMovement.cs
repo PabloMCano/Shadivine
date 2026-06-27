@@ -13,6 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _maxStaminaDodge;
     [SerializeField] private float _minStamToDoDodge;
     [SerializeField] private float _gravity;
+    [SerializeField] private Animator _characterAnimator;
     private CharacterController _cc;
     private Vector2 _moveInputValue;
     private Vector2 _lookInputValue;
@@ -46,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _characterAnimator.SetFloat("XMove", _moveInputValue.x);
+        _characterAnimator.SetFloat("YMove", _moveInputValue.y);
+
         if (!_playerHealth.StopPlayer)
         {
 
@@ -135,13 +139,15 @@ public class PlayerMovement : MonoBehaviour
             if (!_activateSprint)
             {
                 _activateSprint = true;
+                _characterAnimator.SetBool("OnRun", true);
             }
             else
             {
                 _activateSprint = false;
+                _characterAnimator.SetBool("OnRun", false);
             }
 
-       }
+        }
     }
 
     /*

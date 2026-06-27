@@ -8,14 +8,13 @@ public class KillBehindInteract : MonoBehaviour
     public bool PlayerCanKill;
     public bool EnemyDies;
     private EnemyChase _enemyChaseScript;
+    [SerializeField] private EnemyHealth _enemyHealth;
 
     private void Update()
     {
         if (EnemyDies)
         {
-            Debug.Log("Debe crearse un cadaver aca");
-            Destroy(_toDestroy);
-            EnemyDies = false;
+            _enemyHealth.EnemyTakeDamage(500000000);
         }
 
         if (_toDestroy.GetComponent<EnemyChase>() != null)
