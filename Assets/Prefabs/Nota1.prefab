@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3872816317708371230}
   m_Layer: 6
   m_Name: Nota1
-  m_TagString: Untagged
+  m_TagString: InteractableTag
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5592210867658679787}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.36341152, z: -0, w: 0.93162876}
+  m_LocalRotation: {x: 0, y: 0.36341384, z: 0, w: 0.9316278}
   m_LocalPosition: {x: 1.73, y: -3.743, z: -9}
   m_LocalScale: {x: 0.031772293, y: 0.24890164, z: 0.03017653}
   m_ConstrainProportionsScale: 0

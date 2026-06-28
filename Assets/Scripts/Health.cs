@@ -4,17 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int _maxHealth;
+    public float MaxHealth;
     [SerializeField] private Animator _animatorP;
+    [SerializeField] private UIManager _uiM;
     private PlayerAttack _pAttackScript;
     private PlayerInteract _pInteractScript;
-    private int _currentHealth;
+    public float CurrentHealth;
     private bool _isInvincible;
     public bool StopPlayer;
 
     private void Awake()
     {
-        _currentHealth = _maxHealth;
+        CurrentHealth = MaxHealth;
         _pAttackScript = GetComponent<PlayerAttack>();
         _pInteractScript = GetComponent<PlayerInteract>();
     }
@@ -23,13 +24,15 @@ public class Health : MonoBehaviour
     {
     //    if (_isInvincible) return;
 
-        _currentHealth -= Damage;
+        CurrentHealth -= Damage;
+
+        _uiM.DamageForHealth = true;
 
         StartCoroutine(ToStopPlayer());
 
-        Debug.Log($"El personaje recibió {Damage} de daño, ahora tiene {_currentHealth} de vida");
+        Debug.Log($"El personaje recibió {Damage} de daño, ahora tiene {CurrentHealth} de vida");
 
-        if ( _currentHealth <= 0 )
+        if ( CurrentHealth <= 0 )
         {
             Die();
         }
@@ -37,7 +40,7 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        if (_currentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             if (SceneManager.GetActiveScene().name == "2 Tutorial Corridor")
             {

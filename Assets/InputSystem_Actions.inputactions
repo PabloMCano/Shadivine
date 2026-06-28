@@ -107,11 +107,11 @@
                 },
                 {
                     "name": "LongInteract",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "c5b96303-7cf3-4793-bbba-bd81debb7429",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold(duration=2)",
+                    "interactions": "",
                     "initialStateCheck": false
                 },
                 {

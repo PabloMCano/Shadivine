@@ -266,6 +266,7 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 64
+  _uiM: {fileID: 0}
 --- !u!114 &7283970641941695789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,8 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 513c726caa91fc74c8ec4f4751a9d034, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maxHealth: 100
+  MaxHealth: 100
   _animatorP: {fileID: 3541149705504241177}
+  _uiM: {fileID: 0}
+  CurrentHealth: 0
   StopPlayer: 0
 --- !u!114 &8790218221208926019
 MonoBehaviour:

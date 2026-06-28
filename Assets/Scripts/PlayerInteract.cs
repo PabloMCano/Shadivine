@@ -1,3 +1,4 @@
+using System.Threading;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,57 +7,77 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private float distance;
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask interactableLayer;
+    [SerializeField] private UIManager _uiM;
+    public float HoldTime;
+    public bool HoldingE;
+    private float _timerHold;
+    private string _tagInteractable;
+    private IInteractable _interactable;
+    private RaycastHit _hitRaycast;
     private PassToNextLevel _csToNextLevel;
 
-    private bool _buttonInteractPressed;
+    private void Awake()
+    {
+        _tagInteractable = "InteractableTag";
+    }
 
     void Update()
     {
-
         Debug.DrawRay(playerCamera.transform.position, playerCamera.transform.forward * distance, Color.red);
 
-        if (_buttonInteractPressed)
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out _hitRaycast, distance))
         {
-            TryInteract();
-            _buttonInteractPressed = false; // reset
+            // Debug.Log("Le pegaste a: " + _hitRaycast.collider.name);
+
+            _interactable = _hitRaycast.collider.GetComponentInParent<IInteractable>();
+
+            if (_hitRaycast.collider.tag == _tagInteractable)
+            {
+                _uiM.CanInteractwithE = true;
+            }
+            else
+            {
+                _uiM.CanInteractwithE = false;
+                // Debug.Log("NO tiene IInteractable");
+            }
+        }
+
+        if (HoldingE)
+        {
+            _timerHold += Time.deltaTime;
+        }
+
+        else
+        {
+            _timerHold = 0;
         }
     }
 
     void TryInteract()
     {
-        RaycastHit hit;
-
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, distance, interactableLayer))
+        if (_interactable != null && _hitRaycast.collider.CompareTag("InteractableTag"))
         {
-            Debug.Log("Le pegaste a: " + hit.collider.name);
-
-            IInteractable interactable = hit.collider.GetComponentInParent<IInteractable>();
-
-            if (interactable != null)
-            {
-                interactable.Interact();
-            }
-            else
-            {
-                Debug.Log("NO tiene IInteractable");
-            }
+            _interactable.Interact();
         }
+
         else
         {
-            Debug.Log("No le pegaste a nada");
+            return;
         }
     }
 
     // ESTE método lo llama el PlayerInput automáticamente
     private void OnInteract(InputValue value)
     {
-       _buttonInteractPressed = true;
+        TryInteract();
 
     }
 
     private void OnLongInteract(InputValue value)
     {
-        if (_csToNextLevel != null)
+        HoldingE = value.isPressed;
+
+        if (_csToNextLevel != null && _timerHold >= HoldTime)
         {
             if (_csToNextLevel.PlayerCanInteract)
             {
@@ -65,7 +86,6 @@ public class PlayerInteract : MonoBehaviour
                 Debug.Log("Se mantuvo apretado y debe de interactuar");
             }
         }
-        Debug.Log("Se mantuvo apretado");
     }
 
     private void OnTriggerEnter(Collider other)
