@@ -6,12 +6,14 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private Health _pHealth;
     [SerializeField] private GameObject _holdEText;
-    [SerializeField] private GameObject _interactEText;
+    public GameObject InteractEText;
+    public GameObject CloseEText;
     [SerializeField] private GameObject _loadCircle;
     [SerializeField] private Image _lifeBar;
     [SerializeField] private Image _redBar;
     [SerializeField] private Image _circleBar;
     [SerializeField] private PlayerInteract _pInteract;
+    [SerializeField] private Note _note;
     private float _divisionNumberHealth;
     private float _circleCount;
     private bool _startRedBar;
@@ -42,12 +44,31 @@ public class UIManager : MonoBehaviour
 
         if (CanInteractwithE)
         {
-            _interactEText.SetActive(true);
+            if (_note.ImageOn)
+            {
+                InteractEText.SetActive(false);
+            }
+
+            else
+            {
+                InteractEText.SetActive(true);
+            }
         }
 
         else
         {
-            _interactEText.SetActive(false);
+            InteractEText.SetActive(false);
+            CloseEText.SetActive(false);
+        }
+
+        if (_note.ImageOn)
+        {
+            CloseEText.SetActive(true);
+        }
+
+        else
+        {
+            CloseEText.SetActive(false);
         }
 
         _divisionNumberHealth = _pHealth.CurrentHealth / _pHealth.MaxHealth;
@@ -72,8 +93,6 @@ public class UIManager : MonoBehaviour
         {
             _circleCount += Time.deltaTime;
             _circleBar.fillAmount = _circleCount / _pInteract.HoldTime;
-
-            Debug.Log($"{_circleCount}");
         }
 
         if (_pInteract.HoldingE == false)

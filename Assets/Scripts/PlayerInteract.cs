@@ -8,6 +8,7 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private Camera playerCamera;
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private UIManager _uiM;
+    [SerializeField] private Note _note;
     public float HoldTime;
     public bool HoldingE;
     private float _timerHold;
@@ -58,6 +59,11 @@ public class PlayerInteract : MonoBehaviour
         if (_interactable != null && _hitRaycast.collider.CompareTag("InteractableTag"))
         {
             _interactable.Interact();
+
+            if (_uiM.InteractEText)
+            {
+                _uiM.InteractEText.SetActive(false);
+            }
         }
 
         else
@@ -69,8 +75,16 @@ public class PlayerInteract : MonoBehaviour
     // ESTE método lo llama el PlayerInput automáticamente
     private void OnInteract(InputValue value)
     {
-        TryInteract();
+        if (_note.ImageOn)
+        {
+            _note.ImageNote.SetActive(false);
+            _note.ImageOn = false;
+        }
 
+        else
+        {
+            TryInteract();
+        }
     }
 
     private void OnLongInteract(InputValue value)
