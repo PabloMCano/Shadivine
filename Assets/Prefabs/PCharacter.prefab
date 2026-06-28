@@ -267,6 +267,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _uiM: {fileID: 0}
+  _note: {fileID: 0}
+  HoldTime: 2
+  HoldingE: 0
 --- !u!114 &7283970641941695789
 MonoBehaviour:
   m_ObjectHideFlags: 0

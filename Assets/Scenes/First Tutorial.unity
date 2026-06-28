@@ -331,7 +331,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Manten presionado "E" para interactuar
+  m_text: "Mant\xE9n presionado \"E\" para continuar..."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9138,10 +9138,6 @@ PrefabInstance:
       propertyPath: _note
       value: 
       objectReference: {fileID: 346924041}
-    - target: {fileID: 1918815134084602697, guid: 589f5bf5cb713da4ebad22144c747d1e, type: 3}
-      propertyPath: HoldTime
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 3920259059510019994, guid: 589f5bf5cb713da4ebad22144c747d1e, type: 3}
       propertyPath: m_Name
       value: PCharacter
