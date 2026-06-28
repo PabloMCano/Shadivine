@@ -24,11 +24,15 @@ public class PlayerMovement : MonoBehaviour
     private float _timeToRetryDodge;
     private bool _activateDodge;
     private float _xRotation = 0f;
-    private bool _activateSprint;
+    public bool ActivateSprint;
     private float _dodgeMoveForSeconds;
 
     private Health _playerHealth;
     private bool _dodging;
+
+    public float CountMovesPlayer;
+    public bool PlayerIsMoving;
+    public bool CanSprinting;
 
     private void Awake()
     {
@@ -50,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
         _characterAnimator.SetFloat("XMove", _moveInputValue.x);
         _characterAnimator.SetFloat("YMove", _moveInputValue.y);
 
+        IsMoving();
+
         if (!_playerHealth.StopPlayer)
         {
 
@@ -62,7 +68,7 @@ public class PlayerMovement : MonoBehaviour
             //        _actualStaminaDodge += Time.deltaTime * 5;
             //    }
 
-            if (_activateSprint & _moveInputValue.y > 0.1)
+            if (ActivateSprint & _moveInputValue.y > 0.1)
             {
                 _actualSpeed = _runSpeed;
             }
@@ -122,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnMove(InputValue input)
     {
         _moveInputValue = input.Get<Vector2>();
+        CountMovesPlayer++;
 
     }
 
@@ -136,14 +143,14 @@ public class PlayerMovement : MonoBehaviour
     {
        if (input.isPressed)
        {
-            if (!_activateSprint)
+            if (!ActivateSprint)
             {
-                _activateSprint = true;
+                ActivateSprint = true;
                 _characterAnimator.SetBool("OnRun", true);
             }
             else
             {
-                _activateSprint = false;
+                ActivateSprint = false;
                 _characterAnimator.SetBool("OnRun", false);
             }
 
@@ -204,4 +211,39 @@ public class PlayerMovement : MonoBehaviour
     {
         move.y = -_gravity * Time.deltaTime;
     }
+
+    private void IsMoving()
+    {
+        if (_moveInputValue.x > 0.1)
+        {
+            PlayerIsMoving = true;
+        }
+
+        if (_moveInputValue.x < 0.1)
+        {
+            PlayerIsMoving = true;
+        }
+
+        if (_moveInputValue.y < 0.1)
+        {
+            PlayerIsMoving = true;
+        }
+
+        if (_moveInputValue.y > 0.1)
+        {
+            PlayerIsMoving = true;
+            CanSprinting = true;
+        }
+
+        else
+        {
+            CanSprinting = false;
+        }
+
+        if (_moveInputValue.x > -0.1 && _moveInputValue.x < 0.1 && _moveInputValue.y > -0.1 && _moveInputValue.y < 0.1)
+        {
+            PlayerIsMoving = false;
+        }
+    }
+
 }

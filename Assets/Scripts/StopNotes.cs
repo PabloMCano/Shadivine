@@ -7,8 +7,18 @@ public class StopNotes : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        _note.ImageOn = false;
-        _note.ImageNote.SetActive(false);
-        _uiM.CloseEText.SetActive(false);
+        if (_note.ImageOn)
+        {
+            _note.ImageOn = false;
+            _note.ImageNote.SetActive(false);
+            _note.PlayNoteClose();
+            _uiM.CloseEText.SetActive(false);
+        
+        }
+
+        else
+        {
+            return;
+        }
     }
 }

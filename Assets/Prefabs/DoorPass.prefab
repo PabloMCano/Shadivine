@@ -66,6 +66,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e494ab78bf57b6544a25d5f9d2c0c518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _sceneToPass: 
+  _sceneToPass: 2 Tutorial Corridor
+  _uiM: {fileID: 0}
   ActivatedInteract: 0
   PlayerCanInteract: 0

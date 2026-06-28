@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public bool CanHoldE;
     public bool CanInteractwithE;
     public bool DamageForHealth;
+    public bool FullLoading;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -102,6 +103,16 @@ public class UIManager : MonoBehaviour
               _circleCount -= Time.deltaTime;
               _circleBar.fillAmount = _circleCount / _pInteract.HoldTime;
             }
+        }
+
+        if (_circleBar.fillAmount == 1)
+        {
+            FullLoading = true;
+        }
+
+        else
+        {
+            FullLoading = false;
         }
 
     }

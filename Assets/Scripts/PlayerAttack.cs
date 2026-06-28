@@ -14,6 +14,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private GameObject _katana;
     [SerializeField] private Animator _characterAnimations;
     [SerializeField] private GameObject _particlesForAttack;
+    [SerializeField] private PlayerSound _pSound;
     private HitboxPlayerAttack _hitboxDamage;
     private float _timerToAttack;
     private float _timerToContinueCombo;
@@ -33,7 +34,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (_timerToAttack >= _timeToDoAttack)
         {
-            AttackCombo(0.5f);
+            AttackCombo(0.5f, "M1");
         }
     }
 
@@ -44,7 +45,7 @@ public class PlayerAttack : MonoBehaviour
 
         if (_timerToAttack >= _timeToDoAttack)
         {
-            AttackCombo(1f);
+            AttackCombo(1f, "M2");
         }
     }
 
@@ -64,7 +65,7 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private void AttackCombo(float secondsForOtherAttack)
+    private void AttackCombo(float secondsForOtherAttack, string MouseButton)
     {
         switch (_comboNumberAttack)
         {
@@ -76,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
 
                 _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
-                StartCoroutine(AttackHitboxPlayerCouroutine());
+                StartCoroutine(AttackHitboxPlayerCouroutine(MouseButton));
 
                 break;
 
@@ -86,7 +87,7 @@ public class PlayerAttack : MonoBehaviour
 
                 _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
-                StartCoroutine(AttackHitboxPlayerCouroutine());
+                StartCoroutine(AttackHitboxPlayerCouroutine(MouseButton));
 
                 break;
 
@@ -96,7 +97,7 @@ public class PlayerAttack : MonoBehaviour
 
                 _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
-                StartCoroutine(AttackHitboxPlayerCouroutine());
+                StartCoroutine(AttackHitboxPlayerCouroutine(MouseButton));
 
                 break;
 
@@ -106,13 +107,13 @@ public class PlayerAttack : MonoBehaviour
 
                 _timerToAttack = _timeToDoAttack - secondsForOtherAttack;
 
-                StartCoroutine(AttackHitboxPlayerCouroutine());
+                StartCoroutine(AttackHitboxPlayerCouroutine(MouseButton));
 
                 break;
 
             case 4f:
 
-                StartCoroutine(AttackHitboxPlayerCouroutine());
+                StartCoroutine(AttackHitboxPlayerCouroutine(MouseButton));
 
                 _timerToContinueCombo = 0;
 
@@ -124,13 +125,23 @@ public class PlayerAttack : MonoBehaviour
         }
     }
 
-    private IEnumerator AttackHitboxPlayerCouroutine()
+    private IEnumerator AttackHitboxPlayerCouroutine(string MouseButton)
     {
         _hitboxAttack.SetActive(true);
 
         _katana.gameObject.SetActive(true);
         _characterAnimations.SetBool("OnAttack", true);
         _particlesForAttack.gameObject.SetActive(true);
+
+        if (MouseButton == "M1")
+        {
+            _pSound.PlayAttackM1Sound();
+        }
+
+        if (MouseButton == "M2")
+        {
+            _pSound.PlayAttackM2Sound();
+        }
 
         yield return new WaitForSeconds(0.4f);
 

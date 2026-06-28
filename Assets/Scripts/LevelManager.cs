@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _doorPass1;
     [SerializeField] private GameObject _redAlarms;
     [SerializeField] private GameObject _normalLights;
+    [SerializeField] private AlarmRedSound _redAlarmsSound;
     private string _actualSceneName;
     private int _enemyDeathCount;
     private float _alarmCount;
@@ -20,7 +21,7 @@ public class LevelManager : MonoBehaviour
     {
         _alarmCount += Time.deltaTime;
 
-        if (_alarmCount >= 1)
+        if (_alarmCount >= 1.2)
         {
             _redAlarms.SetActive(false);
             _normalLights.SetActive(true);
@@ -28,6 +29,8 @@ public class LevelManager : MonoBehaviour
 
         if (_alarmCount >= 2)
         {
+            _redAlarmsSound.PlayAlarmRedAudio();
+
             _redAlarms.SetActive(true);
             _normalLights.SetActive(false);
             _alarmCount = 0;

@@ -9,13 +9,13 @@ public class PlayerInteract : MonoBehaviour
     [SerializeField] private LayerMask interactableLayer;
     [SerializeField] private UIManager _uiM;
     [SerializeField] private Note _note;
+    [SerializeField] private PassToNextLevel _csToNextLevel;
     public float HoldTime;
     public bool HoldingE;
     private float _timerHold;
     private string _tagInteractable;
     private IInteractable _interactable;
     private RaycastHit _hitRaycast;
-    private PassToNextLevel _csToNextLevel;
 
     private void Awake()
     {
@@ -79,6 +79,7 @@ public class PlayerInteract : MonoBehaviour
         {
             _note.ImageNote.SetActive(false);
             _note.ImageOn = false;
+            _note.PlayNoteClose();
         }
 
         else
@@ -89,9 +90,17 @@ public class PlayerInteract : MonoBehaviour
 
     private void OnLongInteract(InputValue value)
     {
-        HoldingE = value.isPressed;
+        if (_csToNextLevel.PlayerCanInteract)
+        {
+            HoldingE = value.isPressed;
+        }
 
-        if (_csToNextLevel != null && _timerHold >= HoldTime)
+        else
+        {
+            HoldingE = false;
+        }
+
+        if (_csToNextLevel != null && _timerHold >= HoldTime || _csToNextLevel != null && _uiM.FullLoading)
         {
             if (_csToNextLevel.PlayerCanInteract)
             {
