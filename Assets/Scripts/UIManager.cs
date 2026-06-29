@@ -90,6 +90,10 @@ public class UIManager : MonoBehaviour
             DamageForHealth = false;
         }
 
+
+
+
+
         if (_pInteract.HoldingE)
         {
             _circleCount += Time.deltaTime;

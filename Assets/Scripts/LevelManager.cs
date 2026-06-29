@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour
         _actualSceneName = SceneManager.GetActiveScene().name;
     }
 
+    private void Start()
+    {
+        _redAlarmsSound.PlayAlarmRedAudio();
+    }
+
     private void Update()
     {
         _alarmCount += Time.deltaTime;

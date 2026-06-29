@@ -18,16 +18,19 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_stopCountMoves)
+        if (_wasdImage != null && _wasdAnimator != null)
         {
-            _pMovement.CountMovesPlayer = 0;
-        }
+            if (_stopCountMoves)
+            {
+                _pMovement.CountMovesPlayer = 0;
+            }
 
-        if (_pMovement.CountMovesPlayer >= 15)
-        {
-            _stopCountMoves = true;
+            if (_pMovement.CountMovesPlayer >= 15)
+            {
+                _stopCountMoves = true;
 
-            StartCoroutine(DisappearWASD());
+                StartCoroutine(DisappearWASD());
+            }
         }
     }
 

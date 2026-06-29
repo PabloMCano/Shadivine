@@ -79,6 +79,7 @@ public class PlayerInteract : MonoBehaviour
         {
             _note.ImageNote.SetActive(false);
             _note.ImageOn = false;
+            _note.TheCrosshair.SetActive(true);
             _note.PlayNoteClose();
         }
 

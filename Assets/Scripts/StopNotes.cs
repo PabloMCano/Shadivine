@@ -11,6 +11,7 @@ public class StopNotes : MonoBehaviour
         {
             _note.ImageOn = false;
             _note.ImageNote.SetActive(false);
+            _note.TheCrosshair.SetActive(true);
             _note.PlayNoteClose();
             _uiM.CloseEText.SetActive(false);
         

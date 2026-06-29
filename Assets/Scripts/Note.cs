@@ -6,6 +6,7 @@ public class Note : MonoBehaviour, IInteractable
     public AudioClip NoteOpen;
     public AudioClip NoteClose;
     public GameObject ImageNote;
+    public GameObject TheCrosshair;
     public bool ImageOn;
 
     public void Interact()
@@ -14,6 +15,7 @@ public class Note : MonoBehaviour, IInteractable
         {
             ImageOn = true;
             ImageNote.SetActive(true);
+            TheCrosshair.SetActive(false);
 
             PlayNoteOpen();
         }
@@ -22,6 +24,7 @@ public class Note : MonoBehaviour, IInteractable
         {
             ImageOn = false;
             ImageNote.SetActive(false);
+            TheCrosshair.SetActive(true);
             PlayNoteClose();
         }
     }
