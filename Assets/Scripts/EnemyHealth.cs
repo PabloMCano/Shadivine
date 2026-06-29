@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] private int _maxEnemyHealth;
-    private int _currentEnemyHealth;
+    public float MaxEnemyHealth;
+    public float CurrentEnemyHealth;
+    [SerializeField] private EnemyUIController _enemyUIC;
+    [SerializeField] private GameObject _enemyCorpse;
     public bool StopAttackEnemy;
     public static event Action OnEnemyDeath;
 
     private void Awake()
     {
-        _currentEnemyHealth = _maxEnemyHealth;
+        CurrentEnemyHealth = MaxEnemyHealth;
     }
 
     public void EnemyTakeDamage(int Damage)
     {
-        _currentEnemyHealth -= Damage;
+        CurrentEnemyHealth -= Damage;
+
+        _enemyUIC.DamageAnEnemy = true;
 
         StartCoroutine(ToStopEnemy());
 
-        Debug.Log($"El enemigo recibió {Damage} de daño, ahora tiene {_currentEnemyHealth} de vida");
+        Debug.Log($"El enemigo recibió {Damage} de daño, ahora tiene {CurrentEnemyHealth} de vida");
 
-        if (_currentEnemyHealth <= 0)
+        if (CurrentEnemyHealth <= 0)
         {
             Die(gameObject);
         }
@@ -30,11 +34,13 @@ public class EnemyHealth : MonoBehaviour
 
     public void Die(GameObject _gameObject)
     {
-        if (_currentEnemyHealth <= 0)
+        if (CurrentEnemyHealth <= 0)
         {
             Debug.Log("El enemigo debe morir");
 
             OnEnemyDeath?.Invoke();
+
+            Instantiate(_enemyCorpse, transform.position, transform.rotation);
 
             Destroy(_gameObject);
         }

@@ -187,7 +187,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60263c2e7d4496a43a64387013ddf493, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  _maxEnemyHealth: 100
+  MaxEnemyHealth: 100
+  CurrentEnemyHealth: 0
+  _enemyUIC: {fileID: 0}
   StopAttackEnemy: 0
 --- !u!143 &4709312462108567643
 CharacterController:
