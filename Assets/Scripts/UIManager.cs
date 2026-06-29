@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Image _circleBar;
     [SerializeField] private PlayerInteract _pInteract;
     [SerializeField] private Note _note;
+    public GameObject BlackScreen;
     private float _divisionNumberHealth;
     private float _circleCount;
     private bool _startRedBar;

@@ -9,7 +9,7 @@ public class LevelManager : MonoBehaviour
     [SerializeField] private GameObject _normalLights;
     [SerializeField] private AlarmRedSound _redAlarmsSound;
     private string _actualSceneName;
-    private int _enemyDeathCount;
+    public int EnemyDeathCount;
     private float _alarmCount;
 
     private void Awake()
@@ -45,13 +45,13 @@ public class LevelManager : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        _enemyDeathCount++;
+        EnemyDeathCount++;
 
-        Debug.Log($"{_enemyDeathCount}");
+        Debug.Log($"{EnemyDeathCount}");
 
         if (_actualSceneName == "2 Tutorial Corridor" || _actualSceneName == "Reset Corridor")
         {
-            if (_enemyDeathCount >= 1)
+            if (EnemyDeathCount >= 1)
             {
                 ActivateDoorPass();
             }
@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour
 
         if (_actualSceneName == "Finish Tutorial")
         {
-            if (_enemyDeathCount >= 7)
+            if (EnemyDeathCount >= 7)
             {
                 ActivateDoorPass();
             }
