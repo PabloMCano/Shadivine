@@ -173,4 +173,9 @@ public class PlayerAttack : MonoBehaviour
            _killbehind = other.GetComponent<KillBehindInteract>();
         }
     }
+
+    public void StopAttackTimer()
+    {
+        _timerToAttack = 0f;
+    }
 }

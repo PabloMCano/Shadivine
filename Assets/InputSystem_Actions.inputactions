@@ -821,6 +821,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "a06869f8-95f7-4547-966b-bc72dcb3256d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1261,6 +1270,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ResetLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "72896d4f-0d58-4ab4-b220-ebe0972ead2f",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b915963b-170a-4852-9410-e46227126c9e",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Continue",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

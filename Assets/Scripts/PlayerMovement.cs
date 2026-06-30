@@ -34,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     public bool PlayerIsMoving;
     public bool CanSprinting;
 
+    public bool StopRun;
+
     private void Awake()
     {
         _cc = GetComponent<CharacterController>();
@@ -143,18 +145,26 @@ public class PlayerMovement : MonoBehaviour
     {
        if (input.isPressed)
        {
-            if (!ActivateSprint)
+            if (!StopRun)
             {
-                ActivateSprint = true;
-                _characterAnimator.SetBool("OnRun", true);
-            }
-            else
-            {
-                ActivateSprint = false;
-                _characterAnimator.SetBool("OnRun", false);
+                if (!ActivateSprint)
+                {
+                    ActivateSprint = true;
+                    _characterAnimator.SetBool("OnRun", true);
+                }
+                else
+                {
+                    ActivateSprint = false;
+                    _characterAnimator.SetBool("OnRun", false);
+                }
             }
 
-        }
+            else
+            {
+                return;
+            }
+
+       }
     }
 
     /*
