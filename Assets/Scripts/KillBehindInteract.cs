@@ -12,6 +12,7 @@ public class KillBehindInteract : MonoBehaviour
     private EnemyChase _enemyChaseScript;
     [SerializeField] private EnemyHealth _enemyHealth;
     [SerializeField] private UIManager _uiM;
+    private bool _onKilling;
 
     public AudioSource KillBehindAudioSrc;
     public AudioClip NeckBreaker;
@@ -20,6 +21,7 @@ public class KillBehindInteract : MonoBehaviour
     {
         if (EnemyDies)
         {
+            _onKilling = true;
             StartCoroutine(BlackScreenForKilling());
 
             EnemyDies = false;
@@ -34,7 +36,7 @@ public class KillBehindInteract : MonoBehaviour
 
             else
             {
-                if (_enemyChaseScript.ObjectToChase != null)
+                if (_enemyChaseScript.ObjectToChase != null && !_onKilling)
                 {
                     Destroy(gameObject);
                 }
@@ -82,6 +84,7 @@ public class KillBehindInteract : MonoBehaviour
 
         _uiM.BlackScreenAnimator.SetBool("DisappearBool", false);
         _uiM.BlackScreen.SetActive(false);
+        _onKilling = false;
     }
 
     private void PlayNeckBreaker()

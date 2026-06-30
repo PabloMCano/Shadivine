@@ -5,6 +5,7 @@ public class DeathTutorialManager : MonoBehaviour
 {
     [SerializeField] private GameObject _textTip;
     [SerializeField] private GameObject _textRetry;
+    [SerializeField] private bool _retryFinishLevel;
     private bool _canRetry;
     private float _count;
 
@@ -29,7 +30,14 @@ public class DeathTutorialManager : MonoBehaviour
     {
         if (_canRetry)
         {
-            SceneManager.LoadScene("Reset Corridor");
+            if (_retryFinishLevel)
+            {
+                SceneManager.LoadScene("Finish Tutorial");
+            }
+            else
+            {
+                SceneManager.LoadScene("Reset Corridor");
+            }
         }
     }
 }

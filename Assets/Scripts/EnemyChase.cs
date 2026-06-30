@@ -81,7 +81,7 @@ public class EnemyChase : MonoBehaviour
             _animatorEnemy.SetBool("OnAttack", false);
         }
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.9f);
 
         _attackObject.SetActive(false);
         _animatorEnemy.SetBool("OnAttack", false);

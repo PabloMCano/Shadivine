@@ -49,7 +49,7 @@ public class Health : MonoBehaviour
 
             else
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                SceneManager.LoadScene("DeathScene");
             }
         }
     }
